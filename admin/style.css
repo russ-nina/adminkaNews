@@ -1,0 +1,432 @@
+/* Eric Meyer's CSS Reset */
+/*-----------------------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    /*font: inherit;*/
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+input, textarea, p{
+    outline: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*-----------------------------------------------------------------------------*/
+/* End of Eric Meyer's CSS Reset */
+
+
+/*Material-icons*/
+/*-----------------------------------------------------------------------------*/
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+/* Rules for sizing the icon. */
+.material-icons.md-14 { font-size: 14px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+/* Rules for color the icon. */
+.material-icons.beluga { color: #4a4843}
+/*-----------------------------------------------------------------------------*/
+/*End Material-icons*/
+
+
+/*Fonts*/
+/*-----------------------------------------------------------------------------*/
+@font-face {
+    font-family: Raleway;
+    src: url('../fonts/RalewayBold/ralewaybold.woff2') format('woff2');
+    src: url('../fonts/RalewayBold/ralewaybold.woff') format('woff');
+    src: url('../fonts/RalewayBold/ralewaybold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: Lato Light;
+    src: local('Lato Light'), local('Lato-Light'),url('/fonts/LatoLight/latolight.woff2') format('woff2');
+    src: url('/fonts/LatoLight/latolight.woff') format('woff');
+    src: url('/fonts/LatoLight/latolight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: Lato Regular;
+    src: local('Lato Regular'), local('Lato-Regular'),
+    url('/fonts/LatoRegular/latoregular.woff2') format('woff2');
+    src: url('/fonts/LatoRegular/latoregular.woff') format('woff');
+    src: url('/fonts/LatoRegular/latoregular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: EntypoSocial;
+    src: local('Entypo Social'), local('Entypo-Social'),
+    url('/fonts/EntypoSocial/entypo-social.ttf') format('truetype');
+    src: url('/fonts/EntypoSocial/Entypo-Social.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MyriadProRegular";
+    src: url("../fonts/MyriadProRegular/MyriadProRegular.eot");
+    src: url("../fonts/MyriadProRegular/MyriadProRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/MyriadProRegular/MyriadProRegular.woff") format("woff"),
+    url("../fonts/MyriadProRegular/MyriadProRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/*-----------------------------------------------------------------------------*/
+/*End Fonts*/
+
+body{
+    background: url("../img/gorod.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+.cover{
+    display: flex;
+    /*background: url("../img/gorod.jpg") no-repeat center fixed;*/
+    /*background-size: cover;*/
+}
+
+/*Menu*/
+/*-----------------------------------------------------------------------------*/
+.menu{
+    width: 20%;
+    height: 100vh;
+    padding: 10px 0;
+    background: rgba(74, 72, 67, .8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.menu ul{
+    width: 100%;
+}
+
+.item a{
+    display: block;
+    padding: 10px;
+    margin: 5px;
+    color: #f1f1f1;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: Lato Regular, sans-serif;
+}
+.item:hover a{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    color: #ff6f61;
+}
+.item.active a{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    color: #ff6f61;
+}
+.innerMenu li a{
+    text-transform: capitalize;
+    margin-left: 25px;
+}
+.logo{
+    font-family: Raleway, sans-serif;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    transition-duration: 1s;
+}
+.logo:hover{
+    color: #ff6f61;
+}
+.logOut{
+    color: #f1f1f1;
+    font-family: Lato Light, sans-serif;
+}
+.logOut:hover{
+    color: #ff6f61;
+}
+/*-----------------------------------------------------------------------------*/
+/*End Menu*/
+
+/*Wrap pages*/
+/*-----------------------------------------------------------------------------*/
+.wrap{
+    width: 80%;
+    height: auto;
+    min-height: 100vh;
+    padding:15px 20px 15px 20px;
+    background:rgba(241, 241, 241, .8);
+}
+/*Articles*/
+/*---------------------------------------*/
+h2, h3{
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    padding: 10px 0;
+    font-size: 25px;
+
+}
+.bigCover{
+    display: flex;
+}
+.smallCover{
+    margin-right: 25px;
+}
+.headlineArticle, .categoryArticle, .filterArticle, .authorArticle, .imgArticle, .tagArticle, .previewArticle{
+    font-size: 14px;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    margin: 5px 0 5px 0;
+}
+.wrap-section, .media-wrap-section{
+    display: none
+}
+.wrap-section.active, .media-wrap-section.active{
+    display: block
+}
+.wrap-section-input{
+    width: 100%;
+    height: 35px;
+    display: block;
+    background: #f1f1f1;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    margin: 0 0 15px 0;
+    border: 1px solid #4a4843;
+    outline: none;
+}
+.wrap-section-input-author, .wrap-section-input-tag{
+    width: 100%;
+    height: 25px;
+    display: block;
+    background: #f1f1f1;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    margin: 0 0 15px 0;
+    border: 1px solid #4a4843;
+    outline: #ff6f61;
+}
+#categorySite{
+    height: 25px;
+    background: #f1f1f1;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    margin: 0 0 15px 0;
+    border: 1px solid #4a4843;
+    font-size: 14px;
+}
+.coverOptionFilter{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.coverOptionFilter p{
+    margin-right: 25px;
+    font-size: 14px;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+}
+.formDownloadImg{
+    margin: 0 0 15px 0;
+}
+.wrap-section-textarea-style{
+    background: #f1f1f1;
+    min-height: 200px;
+    padding: 10px;
+    border: 1px solid #4a4843;
+    margin: 15px 0;
+    overflow-y: scroll}
+.wrap-section-content-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #4a4843;
+    color: #4a4843;
+    font-family: Lato Light, sans-serif;
+}
+.tools{
+    display: flex;
+}
+.delete, .rename, .redact{
+    color: #f1f1f1;
+    background-color: #ccc0a8;
+    padding: 5px 8px;
+    cursor: pointer;
+    border: 1px solid #4a4843;
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.delete:hover, .rename:hover, .redact:hover{
+    color: #ff6f61;
+}
+/*Mediafile*/
+/*---------------------------------------*/
+.media{
+    display: flex;
+}
+.media-item{
+    margin-right: 20px;
+}
+.media-item a{
+    display: block;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #4a4843;
+    color: #4a4843;
+    font-family: Lato Regular, sans-serif;
+    border-bottom: none;
+    text-decoration: none;
+}
+.media-item:hover a{
+    color: #ff6f61;
+    text-decoration: underline;
+}
+.media-item.active a{
+    z-index: 100;
+    position: relative;
+    background: #ccc0a8;
+}
+.media-wrap{ padding: 10px;
+    background: #ccc0a8;
+    border: 1px solid #4a4843;
+    margin-top: -1px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+/*Pages*/
+/*---------------------------------------*/
+.item-Img{
+    width: 150px;
+    margin-right: 20px;
+}
+.item-Img img{
+    width: 100%;
+}
+.save-pages, .save, .save-category{
+    text-decoration: none;
+    color: #f1f1f1;
+    font-family: Lato Regular, sans-serif;
+    background: #ccc0a8;
+    padding: 5px 10px;
+    border: 1px solid #4a4843;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.save-pages:hover, .save:hover, .save-category:hover{
+    color: #ff6f61;
+}
+/*Modal*/
+.modal_window__pagesRedact, .modal_window__articleRedact{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background:rgba(0, 0, 0, .5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    overflow: auto;
+}
+.showBlock{
+    display: block;
+}
+.wrap_section__pagesRedact, .wrap_section__articleRedact{
+    width: 80%;
+    min-height: 80%;
+    padding:15px 20px 15px 20px;
+    background:rgba(241, 241, 241, .8);
+    margin: 5% auto;
+}
+.coverButtons{
+    padding-top: 10px;
+    display: flex;
+}
+.wrap_section_textarea_style{
+    background: #f1f1f1;
+    min-height: 250px;
+    padding: 10px;
+    border: 1px solid #4a4843;
+    margin: 15px 0;
+    overflow-y: scroll
+}
+.save_page, .cancel_page, .save_article, .cancel_article{
+    text-decoration: none;
+    color: #f1f1f1;
+    background: #ccc0a8;
+    padding: 5px 10px;
+    border: 1px solid #4a4843;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-right: 30px;
+}
+/*-----------------------------------------------------------------------------*/
+/*End Wrap pages*/
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+/*Authorization admin*/
+/*-----------------------------------------------------------------------------*/
+body{
+    margin: 0;
+}
+.cover_authorization{
+
+    background: radial-gradient(rgba(119, 117, 112, .6), rgba(74, 72, 67, .7)), url("../img/gorod.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+}
+.block_authorization{
+    width: 400px;
+    height: 300px;
+    border: 2px solid #4a4843;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(241, 241, 241, .6);
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    padding: 10px;
+    transition-duration: 1s;
+}
+.block_authorization:hover{
+    box-shadow: 0 0 10px rgba(255,111,97, 0.5);
+}
+.title_authorization{
+    font-family: Raleway, sans-serif;
+    color: #4a4843;
+    font-size: 30px;
+}
+.form_authorization{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.input_authorization_login, .input_authorization_pass{
+    width: 250px;
+    height: 40px;
+    margin: 10px 0;
+    border: 2px solid #4a4843;
+    /*box-shadow: 0 0 10px rgba(0,0,0,0.3);*/
+    outline: none;
+    background-color: #ccc0a8;
+    transition-duration: 1s;
+}
+.input_authorization_login:hover, .input_authorization_pass:hover, .input_authorization_send:hover{
+    box-shadow: 0 0 10px rgba(255,111,97, 0.5);
+}
+.input_authorization_send{
+    width: 100px;
+    height: 30px;
+    font-family: Lato Regular, sans-serif;
+    font-size:16px;
+    /*box-shadow: 0 0 10px rgba(0,0,0,0.3);*/
+    background-color: #ccc0a8;
+    color: #4a4843;
+    margin: 10px 0;
+    transition-duration: 1s;
+}
+.logo_auth{
+    font-family: Raleway, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    transition-duration: 1s;
+}
+.logo_auth:hover{
+    color: #ff6f61;
+}
+
+/*-----------------------------------------------------------------------------*/
+/*End Authorization admin*/
