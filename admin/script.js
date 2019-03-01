@@ -17,7 +17,7 @@ $(document).ready(function (e) {
 
     $('.formDownloadImgCreate .upload').on('change', function () {
         files = this.files;
-        console.log(file);
+        console.log(files);
     });
 
     $('.uploadSend').on('click', function (e) {
