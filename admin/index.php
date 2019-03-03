@@ -28,8 +28,9 @@
                     <li><a href="#titleCreate">Create article</a></li>
                 </ul>
             </li>
-            <li class="item">
-                <a href="#media">Mediafile</a></li>
+<!--            <li class="item">-->
+<!--                <a href="#media">Mediafile</a>-->
+<!--            </li>-->
             <li class="item">
                 <a href="#pagesAll">Pages</a>
                 <ul class="innerMenu">
@@ -88,7 +89,6 @@
             </form>
             <div class="wrap-section-btnText">
                 <input type="button" class="btnText-btn btnText-btn__bold" value="B" data-action="bold">
-                <input type="button" class="btnText-btn btnText-btn__addImg" value="img" data-action="insertImage">
             </div>
             <p class="wrap-section-textarea wrap-section-textarea-style" contenteditable="true"></p>
             <a href="#" class="save">Publish</a>
@@ -117,19 +117,12 @@
                     <p><input class="optionFilter" type="radio" name="optionFilterModal" value="popular">Popular</p>
                     <p><input class="optionFilter" type="radio" name="optionFilterModal" value="archived">Archived</p>
                 </div>
-<!--                <form enctype="multipart/form-data" method="post" class="formDownloadPreview">-->
-<!--                    <p class="previewArticle">Preview:</p>-->
-<!--                    <p><input class="preview" type="file" name="img" accept="image/png,image/jpeg" value="choose">-->
-<!--                        <input type="submit" value="Send"></p>-->
-<!--                </form>-->
                 <form enctype="multipart/form-data" method="post" class="formDownloadImg">
                     <p class="imgArticle">Picture:</p>
                     <p><input type="file" name="img[]" multiple accept="image/png,image/jpeg" value="choose">
-<!--                        <input type="submit" value="Send"></p>-->
                 </form>
                 <div class="wrap-section-btnText">
                     <input type="button" class="btnText-btn btnText-btn__bold" value="B" data-action="bold">
-                    <input type="button" class="btnText-btn btnText-btn__addImg" value="img" data-action="insertImage">
                 </div>
                 <p class="wrap-section-textarea wrap_section_textarea_style article_content" contenteditable="true"></p>
                 <div class="coverButtons">
@@ -142,26 +135,26 @@
 
         <!--    Mediafile-->
 
-        <div class="wrap-section wrap-section__media " data-target="media">
-            <h2>Mediafile</h2>
-            <ul class="media">
-                <li class="media-item "><a href="#media-all">All</a></li>
-                <li class="media-item active"><a href="#media-download">Download</a></li>
-            </ul>
-            <div class="media-wrap">
-                <div class="media-wrap-section media-all " data-target="media-all">
-                    <h3>All</h3>
-
-                </div>
-                <div class="media-wrap-section media-download active" data-target="media-download">
-                    <h3>Download</h3>
-                    <form action="#">
-                        <input type="file" class="upload">
-                        <input type="submit" class="uploadSend">
-                    </form>
-                </div>
-            </div>
-        </div>
+<!--        <div class="wrap-section wrap-section__media " data-target="media">-->
+<!--            <h2>Mediafile</h2>-->
+<!--            <ul class="media">-->
+<!--                <li class="media-item "><a href="#media-all">All</a></li>-->
+<!--                <li class="media-item active"><a href="#media-download">Download</a></li>-->
+<!--            </ul>-->
+<!--            <div class="media-wrap">-->
+<!--                <div class="media-wrap-section media-all " data-target="media-all">-->
+<!--                    <h3>All</h3>-->
+<!---->
+<!--                </div>-->
+<!--                <div class="media-wrap-section media-download active" data-target="media-download">-->
+<!--                    <h3>Download</h3>-->
+<!--                    <form action="#">-->
+<!--                        <input type="file" class="upload">-->
+<!--                        <input type="submit" class="uploadSend">-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <!--    Mediafile-->
 
@@ -175,6 +168,10 @@
         <div class="wrap-section wrap-section__pagesCreate" data-target="pagesCreate">
             <h2>Create page</h2>
             <input type="text" class="wrap-section-input alias" name="name">
+            <form enctype="multipart/form-data" method="post" class="formDownloadImgToPage formDownloadImgToPageCreate">
+                <p class="imgPage">Picture:</p>
+                <p><input class="upload" type="file" name="img[]" multiple accept="image/png,image/jpeg" value="choose">
+            </form>
             <div class="wrap-section-btnText">
                 <input type="button" class="btnText-btn btnText-btn__bold" value="B" data-action="bold">
             </div>
@@ -186,6 +183,12 @@
             <div class="wrap_section__pagesRedact" data-target="pagesRedact">
                 <h2>Redact page</h2>
                 <input type="text" class="wrap-section-input input_name alias" name="name">
+
+                <form enctype="multipart/form-data" method="post" class="formDownloadImgToPage">
+                    <p class="imgPage">Picture:</p>
+                    <p><input class="upload" type="file" name="img[]" multiple accept="image/png,image/jpeg" value="choose">
+                </form>
+
                 <div class="wrap_section_btnText">
                     <input type="button" class="btnText_btn btnText_btn__bold" value="B" data-action="bold">
                 </div>

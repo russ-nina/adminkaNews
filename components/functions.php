@@ -115,12 +115,12 @@ function addArticleImg($article_id, $img_path) {
           values ({$article_id}, {$img_path})");
 }
 
-function addTitle($name, $cont, $date){
+function addPageImg($page_id, $img_path) {
     $dbh = Connection();
-    $name = $dbh->quote($name);
-    $cont = $dbh->quote($cont);
-    $date = $dbh->quote($date);
-    $dbh->exec("insert into `titles` (`name`, `content`, `data`) values ({$name}, {$cont}, {$date})");
+    $page_id = $dbh->quote($page_id);
+    $img_path = $dbh->quote($img_path);
+    $dbh->exec(
+        "UPDATE `page` SET `img_path` = {$img_path} WHERE `id` = {$page_id}");
 }
 
 function addImg($name){
@@ -134,6 +134,7 @@ function addPages($name, $cont, $alias){
     $cont = $dbh->quote($cont);
     $alias = $dbh->quote($alias);
     $dbh->exec("insert into `page` (`name`, `content`, `alias`) values ({$name}, {$cont}, {$alias})");
+    return $dbh->lastInsertId();
 }
 function addCategory($name, $alias){
     $dbh = Connection();
@@ -149,13 +150,11 @@ function getIdArticles($id){
     $stmt = $dbh -> query("Select * from `articles` where `article_id` = {$id}");
     return $stmt->fetch();
 }
-
 function getIdArt(){
     $dbh = Connection();
     $stmt = $dbh -> query("Select * from `articles` where `article_id`");
     return $stmt->fetchAll();
 }
-
 function getIdPages($id){
     $dbh = Connection();
     $id = (int)$id;
@@ -169,10 +168,12 @@ function getIdCategory($id){
 }
 
 //Удаление значений из таблицы в базе данных по id
-function deleteTitles($id){
+
+function deleteArticles($article_id){
     $dbh = Connection();
-    $id = (int)$id;
-    $dbh->exec("delete from `titles` where `id`={$id}");
+    $article_id = (int)$article_id;
+    $dbh->exec("delete from `articles` where `article_id`={$article_id}");
+    $dbh->exec("delete from `articles_img` where `article_id`={$article_id}");
 }
 function deletePages($id){
     $dbh = Connection();
@@ -186,12 +187,6 @@ function deleteCategory($id){
 }
 
 //Изменение значений в таблице из базы данных по id
-function renameTitle($name, $id){
-    $dbh = Connection();
-    $name = $dbh->quote($name);
-    $id = (int)$id;
-    $dbh->exec("UPDATE `titles` SET `name`= {$name} WHERE `id` = {$id}");
-}
 function redactArticle($headline, $category, $tag, $content, $author, $filter_category, $article_id){
     $dbh = Connection();
     $headline = $dbh->quote($headline);

@@ -22,6 +22,10 @@ $(document).ready(function (e) {
         console.log(files);
     });
 
+    $('.formDownloadImgToPageCreate .upload').on('change', function () {
+        files = this.files;
+    });
+
     $('.uploadSend').on('click', function (e) {
 
 
@@ -125,7 +129,7 @@ $(document).ready(function (e) {
     });
 
     $('.wrap-section-content').on('click', '.delete', function (e) {
-        deleteTitle($(this).closest(".wrap-section-content-name").data('id'));
+        deleteArticle($(this).closest(".wrap-section-content-name").data('id'));
     });
 
     $('.wrap-section-content-pages').on('click', '.delete', function (e) {
@@ -134,22 +138,6 @@ $(document).ready(function (e) {
 
     $('.wrap-section-content-category').on('click', '.delete', function (e) {
         deleteCategories($(this).closest(".wrap-section-content-name").data('id'));
-    });
-
-    $('.wrap-section-content').on('click', '.rename', function (e) {
-        var _this = $(this).closest(".wrap-section-content-name"),
-            id = _this.data('id'),
-            name = _this.find('p').text();
-        if(_this.hasClass("renameSend")){
-            renameTitle(name, id);
-            _this.removeClass("renameSend");
-            _this.find('p').attr("contenteditable", "false");
-            $(this).text('rename');
-        } else {
-            _this.addClass("renameSend");
-            _this.find('p').attr("contenteditable", "true");
-            $(this).text('save');
-        }
     });
 
     $('.modal_window__pagesRedact').on('click', '.save_page', function (e) {
@@ -283,6 +271,29 @@ $(document).ready(function (e) {
             }
         })
     }
+    function uploadFilePage(page_id) {
+        var formData = new FormData;
+        formData.append('page_id', page_id);
+        $.each(files, function (key, value) {
+            formData.append(key, value);
+        });
+        $.ajax({
+            url:"../components/addPageImg.php",
+            type:"POST",
+            contentType: false,
+            processData: false,
+            data:formData,
+            success: function () {
+                $('.formDownloadImgToPageCreate .upload').val('');
+                files = null;
+            },
+            error: function () {
+                $('.formDownloadImgToPageCreate .upload').val('');
+                files = null;
+                console.log("ERror")
+            }
+        })
+    }
     function sendPostPages(name, content, alias){
         $.ajax({
             url:"../components/addPages.php",
@@ -290,9 +301,12 @@ $(document).ready(function (e) {
             data:{name:name, content:content, alias:alias},
             dataType:'html',
             success:function (data) {
+                data = JSON.parse(data);
+                console.log(data);
                 alert("Save");
                 $('.alias').val("");
                 $('.wrap-section-textarea-pages').text("");
+                uploadFilePage(data.page_id);
                 listPages();
             }
         })
@@ -397,11 +411,11 @@ $(document).ready(function (e) {
             }
         })
     };
-    function deleteTitle(id){
+    function deleteArticle(article_id){
         $.ajax({
-            url:"../components/delete.php",
+            url:"../components/deleteArticle.php",
             type:"POST",
-            data:{id:id},
+            data:{article_id:article_id},
             dataType:'html',
             success:function () {
                 alert('delete');
@@ -430,18 +444,6 @@ $(document).ready(function (e) {
             success:function () {
                 alert('delete');
                 listCategory();
-            }
-        })
-    };
-    function renameTitle(name, id){
-        $.ajax({
-            url:"../components/rename.php",
-            type:"POST",
-            data:{name:name, id:id},
-            dataType:'html',
-            success:function () {
-                alert('Change');
-                listArticles(limit, offset);
             }
         })
     };

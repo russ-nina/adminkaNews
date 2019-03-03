@@ -11,4 +11,6 @@ $content = @$_POST["content"];
 $alias = @$_POST["alias"];
 
 if(empty($_POST["name"]) || empty($_POST["content"]) || empty($_POST["alias"])) die("error");
-addPages($name, $content, $alias);
+$page_id = addPages($name, $content, $alias);
+$json = array ('page_id' => $page_id);
+echo json_encode($json);

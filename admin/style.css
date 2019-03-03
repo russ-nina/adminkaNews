@@ -227,7 +227,7 @@ h2, h3{
 .smallCover{
     margin-right: 25px;
 }
-.headlineArticle, .categoryArticle, .filterArticle, .authorArticle, .imgArticle, .tagArticle, .previewArticle{
+.headlineArticle, .categoryArticle, .filterArticle, .authorArticle, .imgArticle, .imgPage, .tagArticle, .previewArticle{
     font-size: 14px;
     color: #4a4843;
     font-family: Lato Regular, sans-serif;
@@ -281,7 +281,7 @@ h2, h3{
     color: #4a4843;
     font-family: Lato Regular, sans-serif;
 }
-.formDownloadImg{
+.formDownloadImg, .formDownloadImgToPage{
     margin: 0 0 15px 0;
 }
 .wrap-section-textarea-style{
