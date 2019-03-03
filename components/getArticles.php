@@ -7,7 +7,7 @@
  */
 
 require_once 'functions.php';
-$limit = @$_GET["limit"];
-$offset = @$_GET["offset"];
+$limit = @$_POST["limit"];
+$offset = @$_POST["offset"];
 
-getArticles($limit, $offset);
+echo json_encode(getArticles($limit, $offset));

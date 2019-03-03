@@ -4,6 +4,8 @@ $(document).ready(function (e) {
     var myModal = $("#myModal");
     var myModalArticle = $('#myModalArticle');
     var choosCategorySite;
+    var limit = 10;
+    var offset = 0;
 
     $('.optionFilter').on('click',function(){
         this.setAttribute('checked',this.checked);
@@ -231,6 +233,15 @@ $(document).ready(function (e) {
         }
     });
 
+    $('.pagination').on('click', '.page', function (e) {
+        e.preventDefault();
+        var _this = $(this).closest(".page");
+        var id = _this.data('id');
+        offset = (id-1)*limit;
+        listArticles(limit, offset);
+        _this.addClass('activePage').siblings().removeClass("activePage");
+    });
+
     function sendPost(headline, category, tag, content, author, filter_category){
         $.ajax({
             url:"../components/addArticle.php",
@@ -250,16 +261,12 @@ $(document).ready(function (e) {
             }
         })
     }
-
     function uploadFile(article_id) {
         var formData = new FormData;
-
         formData.append('article_id', article_id);
-
-        $.each(files, function (index, file) {
-            formData.append('img', file, file.name);
+        $.each(files, function (key, value) {
+            formData.append(key, value);
         });
-
         $.ajax({
             url:"../components/addArticleImg.php",
             type:"POST",
@@ -269,17 +276,13 @@ $(document).ready(function (e) {
             success: function () {
                 $('.formDownloadImgCreate .upload').val('');
                 files = null;
-                // listArticles();
             },
             error: function (e) {
-                console.log(e);
-
                 $('.formDownloadImgCreate .upload').val('');
                 files = null;
             }
         })
     }
-
     function sendPostPages(name, content, alias){
         $.ajax({
             url:"../components/addPages.php",
@@ -307,21 +310,39 @@ $(document).ready(function (e) {
             }
         })
     }
-    function listArticles(){
+    function listArticles(limit, offset){
         $.ajax({
-            url:"../components/getAllArticles.php",
+            url:"../components/getArticles.php",
             type:"POST",
-            data:{},
+            data:{limit:limit, offset:offset},
             dataType:'html',
             success:function (data) {
                 data = JSON.parse(data);
                 $('.wrap-section-content').empty();
                 for(var i = 0; i<data.length; i++){
                     $('.wrap-section-content').append("<div data-id='"+data[i].article_id+"' class='wrap-section-content-name'><p>"+data[i].headline+"</p><div class='tools'><span class='redact redactArticle'>redact</span><span class='delete'>X</span></div></div>")
-                }
+                };
+                countPagesPagination();
             }
         })
     };
+    function countPagesPagination() {
+        $.ajax({
+            url:"../components/getNumPages.php",
+            type:"POST",
+            data:{},
+            dataType:'html',
+            success:function (data) {
+                data = JSON.parse(data);
+                sum_articles = data[0]['COUNT(*)'];
+                cauntPage = Math.ceil(sum_articles/limit);
+                $('.pagination').empty();
+                for(var i = 1; i<cauntPage; i++){
+                    $('.pagination').append("<div data-id='"+i+"'class='page'><a href=\"#\">"+i+"</a></div>")
+                }
+            }
+        })
+    }
     function listPages(){
         $.ajax({
             url:"../components/pages.php",
@@ -384,7 +405,7 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function () {
                 alert('delete');
-                listArticles();
+                listArticles(limit, offset);
             }
         })
     };
@@ -420,7 +441,7 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function () {
                 alert('Change');
-                listArticles();
+                listArticles(limit, offset);
             }
         })
     };
@@ -475,7 +496,7 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function () {
                 alert('Change');
-                listArticles();
+                listArticles(limit, offset);
             }
         })
     };
@@ -496,7 +517,7 @@ $(document).ready(function (e) {
         var item = _this.parent();
         var selectSection = container.filter("[data-target="+dir+"]");
         item.add(selectSection).addClass('active').siblings().removeClass("active");
-        if (dir=="titleAll") listArticles();
+        if (dir=="titleAll") listArticles(limit, offset);
     };
     function Alias(name){
         var arr1 = name.split('');
@@ -516,7 +537,7 @@ $(document).ready(function (e) {
         }
         return alias;
     };
-    listArticles();
+    listArticles(limit, offset);
     listPages();
     listImg();
     listCategory();

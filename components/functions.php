@@ -41,9 +41,15 @@ function getAllArticles(){
 
 function getArticles($limit, $offset) {
     $dbh = Connection();
-    $limit = $dbh->quote($limit);
-    $offset = $dbh->quote($offset);
-    $stmt = $dbh -> query("Select * from `articles` LIMIT {$limit} OFFSET {$offset} ORDER BY `date` DESC");
+    $limit = (int)$limit;
+    $offset = (int)$offset;
+    $stmt = $dbh -> query("Select * from `articles` ORDER BY `date` DESC LIMIT {$limit} OFFSET {$offset}");
+    return $stmt->fetchAll();
+}
+
+function getNumPages() {
+    $dbh = Connection();
+    $stmt = $dbh -> query("Select COUNT(*) FROM `articles`");
     return $stmt->fetchAll();
 }
 

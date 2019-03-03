@@ -50,11 +50,13 @@
 
     <div class="wrap">
 
-        <!--    Articles-->
+        <!--    Articles QQQ-->
 
         <div class="wrap-section wrap-section__titleAll active" data-target="titleAll">
             <h2>All articles</h2>
             <div class="wrap-section-content ">
+            </div>
+            <div class="pagination">
             </div>
         </div>
         <div class="wrap-section wrap-section__titleCreate" data-target="titleCreate">
@@ -79,15 +81,10 @@
                 <p><input class="optionFilter" type="radio" name="optionFilter" value="popular">Popular</p>
                 <p><input class="optionFilter" type="radio" name="optionFilter" value="archived">Archived</p>
             </div>
-<!--            <form enctype="multipart/form-data" method="post" class="formDownloadPreview">-->
-<!--                <p class="previewArticle">Preview:</p>-->
-<!--                <p><input class="preview" type="file" name="img" accept="image/png,image/jpeg" value="choose">-->
-<!--                    <input type="submit" value="Send"></p>-->
-<!--            </form>-->
             <form enctype="multipart/form-data" method="post" class="formDownloadImg formDownloadImgCreate">
                 <p class="imgArticle">Picture:</p>
                 <p><input class="upload" type="file" name="img" multiple accept="image/png,image/jpeg" value="choose">
-<!--                    <input type="submit" value="Send"></p>-->
+
             </form>
             <div class="wrap-section-btnText">
                 <input type="button" class="btnText-btn btnText-btn__bold" value="B" data-action="bold">
