@@ -80,7 +80,7 @@ function addArticle($headline, $category, $tag, $content, $author, $filter_categ
     $author = $dbh->quote($author);
     $filter_category = $dbh->quote($filter_category);
     $dbh->query(
-        "insert into `articles` (`headline`, `category`, `tag`, `author`, `content`, `filter_category`) 
+        "insert into `articles` (`headline`, `category`, `tag`, `content`, `author`, `filter_category`) 
           values ({$headline}, {$category}, {$tag}, {$content}, {$author}, {$filter_category});");
     return $dbh->lastInsertId();
 }

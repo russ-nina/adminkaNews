@@ -4,17 +4,43 @@ $(document).ready(function (e) {
     var myModal = $("#myModal");
     var myModalArticle = $('#myModalArticle');
     var choosCategorySite;
+    var authorChenge;
+    var headlineChenge;
+    var tagChenge;
+    var filter_categoryChange;
     var limit = 10;
     var offset = 0;
 
     $('.optionFilter').on('click',function(){
         this.setAttribute('checked',this.checked);
-        console.log( $(this) );
-        console.log( $('input[name=optionFilter]:checked').val() );
+    });
+
+    $('.optionFilterModal').on('click',function(){
+        this.setAttribute('checked',this.checked);
+        filter_categoryChange = $('input[name=optionFilterModal]:checked').val();
     });
 
     $('.categorySiteCreate').on('change',function(){
         choosCategorySite = ($(".categorySiteCreate option:selected").text());
+    });
+
+    $('.categorySiteModal').on('change',function(){
+        choosCategorySite = ($(".categorySiteModal option:selected").text());
+    });
+
+    $('.wrap-section-input-author').on('change',function(){
+        authorChenge =  $(this).val();
+
+    });
+
+    $('.headlineArticleInput').on('change',function(){
+        headlineChenge =  $(this).val();
+
+    });
+
+    $('.wrap-section-input-tag').on('change',function(){
+        tagChenge =  $(this).val();
+
     });
 
     $('.formDownloadImgCreate .upload').on('change', function () {
@@ -166,8 +192,6 @@ $(document).ready(function (e) {
         e.preventDefault();
         var _this = $(this).closest(".wrap-section-content-name");
         var id = _this.data('id');
-        // var content = _this.data('content');
-        // var name = _this.find('p').text();
         myModal.addClass('showBlock');
         myModal.attr('data-id', id);
 
@@ -178,12 +202,43 @@ $(document).ready(function (e) {
         e.preventDefault();
         var _this = $(this).closest(myModalArticle);
         var article_id = _this.attr('data-id');
-        var headline = $(".headlineArticleInput").val();
-        var author = $(".wrap-section-input-author").val();
-        var tag = $(".wrap-section-input-tag").val();
+        //
+        var headline;
+        if (headlineChenge) {
+            headline = headlineChenge
+        } else {
+            headline = $(".headlineArticleInput").val();
+        }
+        //
+        var author;
+        if (authorChenge) {
+            author = authorChenge
+        } else {
+            author = $(".wrap-section-input-author").val();
+        }
+        //
+        var tag;
+        if (tagChenge) {
+            tag = tagChenge
+        } else {
+            tag = $(".wrap-section-input-tag").val();
+        }
         var content = $(".article_content").text();
-        var category = $(".categorySiteModal").val();
-        var filter_category = $('input[name=optionFilterModal]').filter('[checked]').val();
+        //
+        var category;
+        if (choosCategorySite){
+            category = choosCategorySite
+        } else {
+            category = $(".categorySiteModal").val();
+        }
+        //
+        var filter_category;
+        if (filter_categoryChange) {
+            filter_category = filter_categoryChange
+        } else {
+            filter_category = $('input[name=optionFilterModal]').filter('[checked]').val();//Проблема: автоматически присваивается значение "weighty"
+        }
+        console.log("фильтр "+filter_category);
         redactArticle(headline, category, tag, content, author, filter_category, article_id)
         myModalArticle.removeClass('showBlock');
         myModalArticle.attr('data-id', '0');
@@ -195,7 +250,7 @@ $(document).ready(function (e) {
 
     });
 
-    $('.wrap-section-content').on('click', '.redactArticle', function (e) {
+    $('.wrap-section-content').on('click', '.redactArticleM', function (e) {
         e.preventDefault();
         var _this = $(this).closest(".wrap-section-content-name");
         var id = _this.data('id');
@@ -244,6 +299,7 @@ $(document).ready(function (e) {
                 $('.wrap-section-input-author').val("");
                 $('input[name=optionFilter]').prop('checked', false);
                 $('.categorySiteCreate').prop('selectedIndex', 0);
+                choosCategorySite = "";
 
                 uploadFile(data.article_id);
             }
@@ -319,7 +375,7 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function (data) {
                 alert("Save");
-                //$('.aliasCat').val("");
+                $('.aliasCat').val("");
                 listCategory();
             }
         })
@@ -332,9 +388,10 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function (data) {
                 data = JSON.parse(data);
+                console.log(data);
                 $('.wrap-section-content').empty();
                 for(var i = 0; i<data.length; i++){
-                    $('.wrap-section-content').append("<div data-id='"+data[i].article_id+"' class='wrap-section-content-name'><p>"+data[i].headline+"</p><div class='tools'><span class='redact redactArticle'>redact</span><span class='delete'>X</span></div></div>")
+                    $('.wrap-section-content').append("<div data-id='"+data[i].article_id+"' class='wrap-section-content-name'><p class='nameArticleList'>"+data[i].headline+"</p><div class='tools'><p class='dateArticle'>"+data[i].date+"</p><span class='redact redactArticleM'>redact</span><span class='delete'>X</span></div></div>")
                 };
                 countPagesPagination();
             }
@@ -351,8 +408,8 @@ $(document).ready(function (e) {
                 sum_articles = data[0]['COUNT(*)'];
                 cauntPage = Math.ceil(sum_articles/limit);
                 $('.pagination').empty();
-                for(var i = 1; i<cauntPage; i++){
-                    $('.pagination').append("<div data-id='"+i+"'class='page'><a href=\"#\">"+i+"</a></div>")
+                for(var i = 0; i<cauntPage; i++){
+                    $('.pagination').append("<div data-id='"+[i+1]+"'class='page'><a href=\"#\">"+[i+1]+"</a></div>")
                 }
             }
         })
@@ -473,7 +530,10 @@ $(document).ready(function (e) {
                 $(".wrap-section-input-author").val(data.author);
                 $(".wrap-section-input-tag").val(data.tag);
                 $(".article_content").text(data.content);
-                $('input[name=optionFilterModal]').filter('[value='+data.filter_category+']').attr('checked', true);
+                // $('input[name=optionFilterModal]').filter('[value='+data.filter_category+']').attr('checked', true);
+                // $('input[name=optionFilterModal]').filter('"[value='+data.filter_category+']"').attr('checked', true);
+                $('input[name=optionFilterModal]').filter('[value="'+data.filter_category+'"]').prop('checked', true);
+                console.log("фильтр с базы: "+data.filter_category);
                 $('.categorySiteModal').val(data.category);
             }
         })
@@ -498,6 +558,17 @@ $(document).ready(function (e) {
             dataType:'html',
             success:function () {
                 alert('Change');
+                $('.headlineArticleInput').val("");
+                $('.wrap-section-textarea').text("");
+                $('.wrap-section-input-tag').val("");
+                $('.wrap-section-input-author').val("");
+                $('input[name=optionFilterModal]').prop('checked', false);
+                $('.categorySiteModal').prop('selectedIndex', 0);
+                headlineChenge = "";
+                authorChenge = "";
+                tagChenge = "";
+                choosCategorySite = "";
+                filter_categoryChange = "";
                 listArticles(limit, offset);
             }
         })
@@ -522,7 +593,7 @@ $(document).ready(function (e) {
         if (dir=="titleAll") listArticles(limit, offset);
     };
     function Alias(name){
-        var arr1 = name.split('');
+        var arr1 = name.toLowerCase().split('');
         var arrEnglish = ["a", "b", "v", "g", "d", "e", "e", "zch", "z", "i", "yi", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts", "ch", "sh", "shch", "y", "y", "e", "yu", "ya", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "c", "w", "q", "j", "x"];
         var arrRuss = ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ы", "ь", "э", "ю", "я", " "];
         var alias = "";

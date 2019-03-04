@@ -146,7 +146,7 @@ body{
 /*-----------------------------------------------------------------------------*/
 .menu{
     width: 20%;
-    height: 100vh;
+    height: auto;
     padding: 10px 0;
     background: rgba(74, 72, 67, .8);
     display: flex;
@@ -298,7 +298,15 @@ h2, h3{
     padding: 10px 0;
     border-bottom: 1px solid #4a4843;
     color: #4a4843;
-    font-family: Lato Light, sans-serif;
+    font-family: Lato Regular, sans-serif;
+    font-weight: bold;
+}
+.dateArticle{
+    margin-right: 10px;
+    align-self: center;
+}
+.nameArticleList{
+    margin-right: 10px;
 }
 .tools{
     display: flex;

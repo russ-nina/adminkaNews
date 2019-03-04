@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="./jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="./script.js"></script>
     <title>News&Articles Admin</title>
 </head>
@@ -113,9 +114,9 @@
                 <select name="categorySite" class="categorySite categorySiteModal"></select>
                 <p class="filterArticle">Filter:</p>
                 <div class="coverOptionFilter">
-                    <p><input class="optionFilter" type="radio" name="optionFilterModal" value="weighty">Weighty</p>
-                    <p><input class="optionFilter" type="radio" name="optionFilterModal" value="popular">Popular</p>
-                    <p><input class="optionFilter" type="radio" name="optionFilterModal" value="archived">Archived</p>
+                    <p><input class="optionFilterModal" type="radio" name="optionFilterModal" value="weighty">Weighty</p>
+                    <p><input class="optionFilterModal" type="radio" name="optionFilterModal" value="popular">Popular</p>
+                    <p><input class="optionFilterModal" type="radio" name="optionFilterModal" value="archived">Archived</p>
                 </div>
                 <form enctype="multipart/form-data" method="post" class="formDownloadImg">
                     <p class="imgArticle">Picture:</p>
