@@ -47,6 +47,13 @@ function getArticles($limit, $offset) {
     return $stmt->fetchAll();
 }
 
+function getTagArticles($tag) {
+    $dbh = Connection();
+    $tag = $dbh->quote($tag);;
+    $stmt = $dbh -> query("Select * from `articles` where tag = {$tag} ORDER BY `date` DESC");
+    return $stmt->fetchAll();
+}
+
 function getNumPages() {
     $dbh = Connection();
     $stmt = $dbh -> query("Select COUNT(*) FROM `articles`");

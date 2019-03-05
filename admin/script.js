@@ -409,7 +409,7 @@ $(document).ready(function (e) {
                 cauntPage = Math.ceil(sum_articles/limit);
                 $('.pagination').empty();
                 for(var i = 0; i<cauntPage; i++){
-                    $('.pagination').append("<div data-id='"+[i+1]+"'class='page'><a href=\"#\">"+[i+1]+"</a></div>")
+                    $('.paginationAdmin').append("<div data-id='"+[i+1]+"'class='pageAdmin'><a href=\"#\">"+[i+1]+"</a></div>")
                 }
             }
         })
