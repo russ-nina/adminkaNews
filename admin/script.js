@@ -276,9 +276,9 @@ $(document).ready(function (e) {
         }
     });
 
-    $('.pagination').on('click', '.page', function (e) {
+    $('.paginationAdmin').on('click', '.pageAdmin', function (e) {
         e.preventDefault();
-        var _this = $(this).closest(".page");
+        var _this = $(this).closest(".pageAdmin");
         var id = _this.data('id');
         offset = (id-1)*limit;
         listArticles(limit, offset);
@@ -407,7 +407,8 @@ $(document).ready(function (e) {
                 data = JSON.parse(data);
                 sum_articles = data[0]['COUNT(*)'];
                 cauntPage = Math.ceil(sum_articles/limit);
-                $('.pagination').empty();
+                console.log("cauntPage: "+cauntPage);
+                $('.paginationAdmin').empty();
                 for(var i = 0; i<cauntPage; i++){
                     $('.paginationAdmin').append("<div data-id='"+[i+1]+"'class='pageAdmin'><a href=\"#\">"+[i+1]+"</a></div>")
                 }

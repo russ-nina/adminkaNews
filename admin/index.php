@@ -58,7 +58,7 @@
             <h2>All articles</h2>
             <div class="wrap-section-content ">
             </div>
-            <div class="pagination">
+            <div class="paginationAdmin">
             </div>
         </div>
         <div class="wrap-section wrap-section__titleCreate" data-target="titleCreate">
